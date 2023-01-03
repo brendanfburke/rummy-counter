@@ -39,6 +39,10 @@ function App() {
   const clearScores = () => {
     setBrendanTotal(0)
     setErinTotal(0)
+    setBrendanCount(0)
+    setErinCount(0)
+    setBrendanAdd('')
+    setErinAdd('')
   }
 
   return (
