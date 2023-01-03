@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // import Brendan from './components/Brendan';
 // import Erin from './components/Erin';
 
