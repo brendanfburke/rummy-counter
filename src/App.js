@@ -29,7 +29,7 @@ function App() {
       setBrendanBackground("rgba(255,0,0,1)")
     }
     
-  })
+  }, [brendanTotal, erinTotal])
 
  
 
