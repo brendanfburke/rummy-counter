@@ -1,7 +1,6 @@
 import './App.css';
-import { useState } from 'react';
-// import Brendan from './components/Brendan';
-// import Erin from './components/Erin';
+import { useState, useEffect } from 'react';
+
 
 function App() {
 
@@ -13,27 +12,58 @@ function App() {
   const [erinAdd, setErinAdd] = useState('')
   const [erinTotal, setErinTotal] = useState(0)
 
+  const [brendanBackground, setBrendanBackground] = useState('rgba(255,0,0,1)')
+  const [erinBackground, setErinBackground] = useState('rgba(255,0,0,1)')
 
+ 
+  
+  useEffect(() => {
+    if (brendanTotal > erinTotal) {
+      setBrendanBackground("rgba(0,255,63,1)")
+      setErinBackground("rgba(255,0,0,1)")
+    } else if (erinTotal > brendanTotal) {
+      setErinBackground("rgba(0,255,63,1)")
+      setBrendanBackground("rgba(255,0,0,1)")
+    } else  {
+      setErinBackground("rgba(255,0,0,1)")
+      setBrendanBackground("rgba(255,0,0,1)")
+    }
+    
+  })
+
+ 
 
   const brendanCalculator = () => {
     const addNumber = parseInt(brendanAdd)
     const countNumber = parseInt(brendanCount)
+    console.log(addNumber)
 
-    const newCount = addNumber + countNumber
-    setBrendanTotal(newCount)
-    setBrendanAdd('')
-    setBrendanCount(newCount)
-    console.log(newCount)
+    if (isNaN(addNumber)) {
+      return
+    } else  {
+      const newCount = addNumber + countNumber
+      setBrendanTotal(newCount)
+      setBrendanAdd('')
+      setBrendanCount(newCount)
+      console.log(newCount)
+    }
+
+    
   }
   const erinCalculator = () => {
     const addNumber = parseInt(erinAdd)
     const countNumber = parseInt(erinCount)
 
-    const newCount = addNumber + countNumber
-    setErinTotal(newCount)
-    setErinAdd('')
-    setErinCount(newCount)
-    console.log(newCount)
+    if (isNaN(addNumber)) {
+      return 
+    } else {
+      const newCount = addNumber + countNumber
+      setErinTotal(newCount)
+      setErinAdd('')
+      setErinCount(newCount)
+      console.log(newCount)
+    }
+
   }
 
   const clearScores = () => {
@@ -45,39 +75,42 @@ function App() {
     setErinAdd('')
   }
 
+  const calculate = () => {
+    brendanCalculator()
+    erinCalculator()
+
+  }
+
   return (
-    <div className="App">
-      <h1>Rummy Counter</h1>
-      <div className='name-container'>
-        <h2>Brendan</h2>
-        <h2>Erin</h2>
-      </div>
-      <div className='count-container'>
-        <div className='count-number'>{brendanTotal}</div>
-        <div className='count-number'>{erinTotal}</div>
-      </div>
-      <div className='counter-container'>
-        <div>
-            <h1>Brendan Counter</h1>
-              <input 
-                type="tel" 
-                value={brendanAdd}
-                onChange={(e) => setBrendanAdd(e.target.value)}
-              />
-              <button onClick={brendanCalculator}>Submit</button>
+    <div className="App" style={{background: `linear-gradient(90deg, ${brendanBackground} 0%, ${erinBackground} 100%)` }}>
+      <div className='title'>Rummy Counter</div>
+      <div className='info-container'>
+        <div className='brendan-container'>
+          <div className='name'>Brendan</div>
+          <div className='count-number'>{brendanTotal}</div>
+          <div>
+                <input 
+                  type="tel" 
+                  value={brendanAdd}
+                  onChange={(e) => setBrendanAdd(e.target.value)}
+                />
+          </div>
         </div>
-        <div>
-            <h1>Erin Counter</h1>
-              <input 
-                type="tel" 
-                value={erinAdd}
-                onChange={(e) => setErinAdd(e.target.value)}
-              />
-              <button onClick={erinCalculator}>Submit</button>
+        <div className='erin-container'>
+          <div className='name'>Erin</div>
+          <div className='count-number'>{erinTotal}</div>
+          <div>
+                <input 
+                  type="tel" 
+                  value={erinAdd}
+                  onChange={(e) => setErinAdd(e.target.value)}
+                />
+          </div>
         </div>
       </div>
+      <button onClick={calculate} >Submit</button>
       <footer>
-        <button onClick={clearScores}>Clear Scores</button>
+        <button  onClick={clearScores}>Clear Scores</button>
       </footer>
     </div>
   );

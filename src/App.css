@@ -3,19 +3,38 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.name-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
+.title {
+  font-size: 4rem;
+  font-weight: 600;
 }
-.count-container {
+
+.name {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.info-container {
   display: flex;
-  flex-direction: row;
+  width: 100vw;
+}
+
+.brendan-container {
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  width: 100%;
+  align-items: center;
+  width: 50vw;
+}
+.erin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 50vw;
 }
 .counter-container {
   display: flex;
@@ -25,9 +44,28 @@
 }
 
 .count-number {
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: 700;
   text-align: center;
+}
+
+input {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  font-size: 2rem;
+}
+
+button {
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 2rem;
+  font-weight: 600;
+  border: none;
+  padding-top: 15px;
+  padding-left: 15px;
 }
 
 footer {
@@ -39,5 +77,12 @@ footer {
 @media screen and (max-width: 600px) {
   .counter-container {
     flex-direction: column;
+  }
+  .name {
+    font-size: 2.5rem;
+  }
+
+  button {
+    padding-left: 0;
   }
 }
